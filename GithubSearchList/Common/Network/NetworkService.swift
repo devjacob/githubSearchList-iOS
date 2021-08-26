@@ -10,20 +10,37 @@ import Foundation
 import RxAlamofire
 import RxSwift
 
-fileprivate let baseURL: String = "https://developer.github.com/v3/"
+fileprivate let baseURL: String = "https://api.github.com/"
 
 enum NetworkService {
+    case search(text: String?, page: Int)
 
     private var method: HTTPMethod {
-        return .get
+        switch self {
+        case .search:
+            return .get
+        }
     }
 
     private var path: String {
-        return ""
+        switch self {
+        case .search:
+            return "search/repositories"
+        }
     }
 
     private var parameters: Parameters {
-        return Parameters()
+        switch self {
+        case let .search(text, page):
+            var parameters = Parameters()
+            if let text = text {
+                parameters.updateValue(text, forKey: "q")
+            }
+
+            parameters.updateValue(page, forKey: "page")
+
+            return parameters
+        }
     }
 }
 

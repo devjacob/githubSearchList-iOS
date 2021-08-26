@@ -6,7 +6,40 @@
 //
 
 import Foundation
+import RxSwift
 
 class SearchViewModel {
-    var repositorys: [Repository] = Array()
+    private var disposeBag: DisposeBag = DisposeBag()
+    
+    var repositories: [Item] = Array()
+    private var totalCount: Int = 0
+
+    weak var delegate: SearchDelegate?
+
+    var text: String = "a"
+    private var page: Int = 1
+
+    func request() {
+        NetworkAPI.requestSearch(text: text, page: page)
+            .asObservable()
+            .debug()
+            .subscribe(onNext: { [weak self] model in
+                guard let self = self else { return }
+
+                self.totalCount = model.totalCount ?? 0
+                if let items = model.items {
+                    self.repositories.append(contentsOf: items)
+                }
+
+                self.delegate?.reloadData()
+            }, onError: { [weak self] error in
+                guard let self = self else { return }
+                self.delegate?.error(error: error)
+            }).disposed(by: disposeBag)
+    }
+}
+
+protocol SearchDelegate: AnyObject {
+    func reloadData()
+    func error(error: Error)
 }

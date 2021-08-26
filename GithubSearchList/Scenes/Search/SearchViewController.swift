@@ -28,15 +28,29 @@ class SearchViewController: UIViewController {
     private func initView() {
         collectionView.delegate = self
         collectionView.dataSource = self
+
+        viewModel.delegate = self
     }
 }
 
 extension SearchViewController: UICollectionViewDelegate, UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return viewModel.repositorys.count
+        return viewModel.repositories.count
     }
 
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         return UICollectionViewCell()
     }
+}
+
+extension SearchViewController: SearchDelegate {
+    func reloadData() {
+        collectionView.reloadData()
+    }
+
+    func error(error: Error) {
+
+    }
+
+
 }
