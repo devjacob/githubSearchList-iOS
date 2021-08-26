@@ -23,7 +23,7 @@ class SearchViewController: UIViewController {
     @IBOutlet weak var collectionView: UICollectionView!
 
     @IBAction func clickedSearchButton(_ sender: Any) {
-
+        search(text: searchTextField.text)
     }
 
     override func viewDidLoad() {
@@ -65,12 +65,17 @@ class SearchViewController: UIViewController {
                     return
                 }
 
-                if let text = text, text != self.viewModel.text {
-                    self.viewModel.reset()
-                    self.collectionView.reloadData()
-                    self.viewModel.text = text
-                }
+                self.search(text: text)
             }).disposed(by: disposeBag)
+    }
+
+    private func search(text: String?) {
+
+        if let text = text {
+            self.viewModel.reset()
+            self.collectionView.reloadData()
+            self.viewModel.text = text
+        }
     }
 }
 
