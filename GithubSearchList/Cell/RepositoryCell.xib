@@ -4,6 +4,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="18093"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="collection view cell content view" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -11,13 +12,60 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
         <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" restorationIdentifier="RepositoryCell" reuseIdentifier="RepositoryCell" id="KK3-Ka-UXy" customClass="RepositoryCell" customModule="GithubSearchList" customModuleProvider="target">
-            <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
+            <rect key="frame" x="0.0" y="0.0" width="387" height="91"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="ffb-jw-jTV">
-                <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
+                <rect key="frame" x="0.0" y="0.0" width="387" height="91"/>
                 <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bkV-70-AWY">
+                        <rect key="frame" x="0.0" y="90" width="387" height="1"/>
+                        <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="1" id="KFF-py-qiF"/>
+                        </constraints>
+                    </view>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IuT-9H-cJU">
+                        <rect key="frame" x="15" y="10" width="357" height="0.0"/>
+                        <constraints>
+                            <constraint firstAttribute="height" priority="750" id="Iqd-uL-VvC"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                        <color key="textColor" systemColor="linkColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Wt6-sF-oWH">
+                        <rect key="frame" x="15" y="17" width="357" height="63"/>
+                        <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="14"/>
+                        <color key="textColor" white="0.0" alpha="0.53717009875239163" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                </subviews>
+                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                <constraints>
+                    <constraint firstItem="IuT-9H-cJU" firstAttribute="top" secondItem="ffb-jw-jTV" secondAttribute="top" constant="10" id="5qL-ec-4Qi"/>
+                    <constraint firstAttribute="trailing" secondItem="IuT-9H-cJU" secondAttribute="trailing" constant="15" id="FFt-Wn-Bjc"/>
+                    <constraint firstAttribute="trailing" secondItem="bkV-70-AWY" secondAttribute="trailing" id="Fds-CZ-lhH"/>
+                    <constraint firstItem="bkV-70-AWY" firstAttribute="leading" secondItem="ffb-jw-jTV" secondAttribute="leading" id="K5E-ox-Tou"/>
+                    <constraint firstItem="Wt6-sF-oWH" firstAttribute="leading" secondItem="IuT-9H-cJU" secondAttribute="leading" id="RRt-Yw-YOw"/>
+                    <constraint firstItem="Wt6-sF-oWH" firstAttribute="trailing" secondItem="IuT-9H-cJU" secondAttribute="trailing" id="byo-4O-mCE"/>
+                    <constraint firstItem="IuT-9H-cJU" firstAttribute="leading" secondItem="ffb-jw-jTV" secondAttribute="leading" constant="15" id="fie-qW-Ysv"/>
+                    <constraint firstItem="Wt6-sF-oWH" firstAttribute="top" secondItem="IuT-9H-cJU" secondAttribute="bottom" constant="7" id="l3A-y5-Wej"/>
+                    <constraint firstAttribute="bottom" secondItem="bkV-70-AWY" secondAttribute="bottom" id="q07-8G-qeu"/>
+                    <constraint firstItem="bkV-70-AWY" firstAttribute="top" secondItem="Wt6-sF-oWH" secondAttribute="bottom" constant="10" id="ubk-Xi-CWr"/>
+                </constraints>
             </collectionViewCellContentView>
-            <point key="canvasLocation" x="139" y="103"/>
+            <size key="customSize" width="387" height="91"/>
+            <connections>
+                <outlet property="descriptionLabel" destination="Wt6-sF-oWH" id="Oj9-MY-Lql"/>
+                <outlet property="fullnameLabel" destination="IuT-9H-cJU" id="6Ee-Kk-dVL"/>
+            </connections>
+            <point key="canvasLocation" x="129.71014492753625" y="116.18303571428571"/>
         </collectionViewCell>
     </objects>
+    <resources>
+        <systemColor name="linkColor">
+            <color red="0.0" green="0.47843137254901963" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+    </resources>
 </document>
