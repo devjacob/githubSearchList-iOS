@@ -1,0 +1,6 @@
+framework module Pods_GithubSearchList {
+  umbrella header "Pods-GithubSearchList-umbrella.h"
+
+  export *
+  module * { export * }
+}
