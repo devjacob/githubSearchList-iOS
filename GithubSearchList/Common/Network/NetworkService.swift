@@ -13,7 +13,7 @@ import RxSwift
 fileprivate let baseURL: String = "https://api.github.com/"
 
 enum NetworkService {
-    case search(text: String?, page: Int)
+    case search(text: String, page: Int)
 
     private var method: HTTPMethod {
         switch self {
@@ -33,10 +33,7 @@ enum NetworkService {
         switch self {
         case let .search(text, page):
             var parameters = Parameters()
-            if let text = text {
-                parameters.updateValue(text, forKey: "q")
-            }
-
+            parameters.updateValue(text, forKey: "q")
             parameters.updateValue(page, forKey: "page")
 
             return parameters
