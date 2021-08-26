@@ -85,7 +85,7 @@ class SearchViewController: UIViewController {
 extension SearchViewController: UICollectionViewDelegate, UICollectionViewDataSource {
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
         let offsetY = scrollView.contentOffset.y
-        if collectionView.contentSize.height > 0, (collectionView.contentSize.height - offsetY) <= (100 + collectionView.frame.height) {
+        if collectionView.contentSize.height > 0, (collectionView.contentSize.height - offsetY) <= (200 + collectionView.frame.height) {
             viewModel.request()
         }
     }
