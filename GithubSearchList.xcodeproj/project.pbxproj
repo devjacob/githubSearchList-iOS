@@ -23,6 +23,7 @@
 		166E4CEC26D7BBDE0025EE25 /* NetworkAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 166E4CEB26D7BBDE0025EE25 /* NetworkAPI.swift */; };
 		166E4CF026D7C6140025EE25 /* RepositoryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 166E4CEF26D7C6140025EE25 /* RepositoryCell.swift */; };
 		166E4CF226D7C61A0025EE25 /* RepositoryCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 166E4CF126D7C61A0025EE25 /* RepositoryCell.xib */; };
+		166E4CF526D7E9C20025EE25 /* NetworkStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = 166E4CF426D7E9C20025EE25 /* NetworkStatus.swift */; };
 		396E95475D309AE65E843987 /* Pods_GithubSearchList.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6904F6927709DCA105C7CA98 /* Pods_GithubSearchList.framework */; };
 		E05F6742E5D56BDFD5ABB730 /* Pods_GithubSearchList_GithubSearchListUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 339F7A1A0169DE0D98FD784B /* Pods_GithubSearchList_GithubSearchListUITests.framework */; };
 		F9FA892094BFB02DF1C23B7F /* Pods_GithubSearchListTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5540B3644AD5E653A1C5F6D1 /* Pods_GithubSearchListTests.framework */; };
@@ -69,6 +70,7 @@
 		166E4CEB26D7BBDE0025EE25 /* NetworkAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkAPI.swift; sourceTree = "<group>"; };
 		166E4CEF26D7C6140025EE25 /* RepositoryCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepositoryCell.swift; sourceTree = "<group>"; };
 		166E4CF126D7C61A0025EE25 /* RepositoryCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RepositoryCell.xib; sourceTree = "<group>"; };
+		166E4CF426D7E9C20025EE25 /* NetworkStatus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkStatus.swift; sourceTree = "<group>"; };
 		339F7A1A0169DE0D98FD784B /* Pods_GithubSearchList_GithubSearchListUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_GithubSearchList_GithubSearchListUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		5540B3644AD5E653A1C5F6D1 /* Pods_GithubSearchListTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_GithubSearchListTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		6904F6927709DCA105C7CA98 /* Pods_GithubSearchList.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_GithubSearchList.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -166,6 +168,7 @@
 		166E4CD526D7B0FE0025EE25 /* Common */ = {
 			isa = PBXGroup;
 			children = (
+				166E4CF326D7E9B60025EE25 /* Enum */,
 				166E4CD626D7B1030025EE25 /* Network */,
 			);
 			path = Common;
@@ -223,6 +226,14 @@
 				166E4CF126D7C61A0025EE25 /* RepositoryCell.xib */,
 			);
 			path = Cell;
+			sourceTree = "<group>";
+		};
+		166E4CF326D7E9B60025EE25 /* Enum */ = {
+			isa = PBXGroup;
+			children = (
+				166E4CF426D7E9C20025EE25 /* NetworkStatus.swift */,
+			);
+			path = Enum;
 			sourceTree = "<group>";
 		};
 		20E7C68758A9FDF083825E55 /* Frameworks */ = {
@@ -491,6 +502,7 @@
 				166E4CE426D7B52C0025EE25 /* SearchViewController.swift in Sources */,
 				166E4CEC26D7BBDE0025EE25 /* NetworkAPI.swift in Sources */,
 				166E4CE626D7B5390025EE25 /* SearchViewModel.swift in Sources */,
+				166E4CF526D7E9C20025EE25 /* NetworkStatus.swift in Sources */,
 				166E4CE926D7B7090025EE25 /* Repository.swift in Sources */,
 				166E4CF026D7C6140025EE25 /* RepositoryCell.swift in Sources */,
 				166E4CD826D7B1320025EE25 /* NetworkService.swift in Sources */,

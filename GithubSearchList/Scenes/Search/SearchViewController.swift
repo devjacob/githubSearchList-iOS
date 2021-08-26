@@ -83,6 +83,13 @@ class SearchViewController: UIViewController {
 }
 
 extension SearchViewController: UICollectionViewDelegate, UICollectionViewDataSource {
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        let offsetY = scrollView.contentOffset.y
+        if collectionView.contentSize.height > 0, (collectionView.contentSize.height - offsetY) <= (200 + collectionView.frame.height) {
+            viewModel.request()
+        }
+    }
+
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return viewModel.repositories.count
     }
