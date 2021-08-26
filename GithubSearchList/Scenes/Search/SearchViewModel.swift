@@ -16,7 +16,17 @@ class SearchViewModel {
 
     weak var delegate: SearchDelegate?
 
-    var text: String = "a"
+    var text: String = "" {
+        didSet {
+            if oldValue != text {
+                totalCount = 0
+                repositories.removeAll()
+                page = 1
+                request()
+            }
+        }
+    }
+
     private var page: Int = 1
 
     func request() {
@@ -31,6 +41,7 @@ class SearchViewModel {
                     self.repositories.append(contentsOf: items)
                 }
 
+                self.page += 1
                 self.delegate?.reloadData()
             }, onError: { [weak self] error in
                 guard let self = self else { return }

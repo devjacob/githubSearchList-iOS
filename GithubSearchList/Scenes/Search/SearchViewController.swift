@@ -7,8 +7,11 @@
 
 import Foundation
 import UIKit
+import RxSwift
+import RxCocoa
 
 class SearchViewController: UIViewController {
+    private var disposeBag: DisposeBag = DisposeBag()
     var viewModel: SearchViewModel = SearchViewModel()
 
     @IBOutlet weak var searchTextField: UITextField!
@@ -23,6 +26,7 @@ class SearchViewController: UIViewController {
         super.viewDidLoad()
 
         initView()
+        bind()
     }
 
     private func initView() {
@@ -30,6 +34,32 @@ class SearchViewController: UIViewController {
         collectionView.dataSource = self
 
         viewModel.delegate = self
+    }
+
+    private func bind() {
+        let filterWhiteSpace: (String?) -> Bool = { text in
+            (text?.isEmpty == true || text?.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty == true) ? false : true
+        }
+
+        searchTextField.rx.controlEvent(.editingChanged)
+            .map({ [weak self] _ -> String? in
+                guard let self = self else {
+                    return nil
+                }
+
+                return self.searchTextField.text
+            })
+            .debounce(.milliseconds(300), scheduler: MainScheduler.instance)
+            .filter(filterWhiteSpace)
+            .subscribe(onNext: { [weak self] text in
+                guard let self = self else {
+                    return
+                }
+
+                if let text = text {
+                    self.viewModel.text = text
+                }
+            }).disposed(by: disposeBag)
     }
 }
 

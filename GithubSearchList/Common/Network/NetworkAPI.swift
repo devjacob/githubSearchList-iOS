@@ -8,7 +8,7 @@
 import RxSwift
 
 class NetworkAPI {
-    static func requestSearch(text: String?, page: Int) -> Observable<Repository> {
+    static func requestSearch(text: String, page: Int) -> Observable<Repository> {
         return NetworkService.search(text: text, page: page)
             .requset()
             .retry(3)
