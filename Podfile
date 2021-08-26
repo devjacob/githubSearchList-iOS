@@ -5,7 +5,8 @@ target 'GithubSearchList' do
   # Comment the next line if you don't want to use dynamic frameworks
   use_frameworks!
 
-  # Pods for GithubSearchList
+  pod 'Alamofire', '~> 5.4'
+  pod 'RxAlamofire', '6.1.1'
 
   target 'GithubSearchListTests' do
     inherit! :search_paths
