@@ -10,6 +10,10 @@ import UIKit
 import RxSwift
 import RxCocoa
 
+enum SearchCellIdentifier: String, CaseIterable {
+    case repositoryCell = "RepositoryCell"
+}
+
 class SearchViewController: UIViewController {
     private var disposeBag: DisposeBag = DisposeBag()
     var viewModel: SearchViewModel = SearchViewModel()
@@ -32,6 +36,11 @@ class SearchViewController: UIViewController {
     private func initView() {
         collectionView.delegate = self
         collectionView.dataSource = self
+
+        for cell in SearchCellIdentifier.allCases {
+            let identifier = cell.rawValue
+            collectionView.register(UINib(nibName: identifier, bundle: nil), forCellWithReuseIdentifier: identifier)
+        }
 
         viewModel.delegate = self
     }
@@ -56,7 +65,9 @@ class SearchViewController: UIViewController {
                     return
                 }
 
-                if let text = text {
+                if let text = text, text != self.viewModel.text {
+                    self.viewModel.reset()
+                    self.collectionView.reloadData()
                     self.viewModel.text = text
                 }
             }).disposed(by: disposeBag)
@@ -69,6 +80,11 @@ extension SearchViewController: UICollectionViewDelegate, UICollectionViewDataSo
     }
 
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        if let cell = collectionView.dequeueReusableCell(withReuseIdentifier: SearchCellIdentifier.repositoryCell.rawValue, for: indexPath) as? RepositoryCell {
+
+            return cell
+        }
+
         return UICollectionViewCell()
     }
 }
