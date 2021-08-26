@@ -18,6 +18,8 @@ class SearchViewController: UIViewController {
     private var disposeBag: DisposeBag = DisposeBag()
     var viewModel: SearchViewModel = SearchViewModel()
 
+    private var cachedCell: UICollectionViewCell?
+
     @IBOutlet weak var searchTextField: UITextField!
 
     @IBOutlet weak var collectionView: UICollectionView!
@@ -75,6 +77,7 @@ class SearchViewController: UIViewController {
             self.viewModel.reset()
             self.collectionView.reloadData()
             self.viewModel.text = text
+            self.viewModel.request()
         }
     }
 }
@@ -86,11 +89,37 @@ extension SearchViewController: UICollectionViewDelegate, UICollectionViewDataSo
 
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         if let cell = collectionView.dequeueReusableCell(withReuseIdentifier: SearchCellIdentifier.repositoryCell.rawValue, for: indexPath) as? RepositoryCell {
-
+            let item = viewModel.repositories[indexPath.row]
+            cell.bind(item)
             return cell
         }
 
         return UICollectionViewCell()
+    }
+}
+
+extension SearchViewController: UICollectionViewDelegateFlowLayout {
+
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        let identifier = SearchCellIdentifier.repositoryCell.rawValue
+        if cachedCell == nil {
+            guard let cell = Bundle.main.loadNibNamed(identifier, owner: self, options: nil)?.first as? UICollectionViewCell else {
+                return CGSize.zero
+            }
+
+            cachedCell = cell
+        }
+
+        let cellWidth = collectionView.frame.width
+        if let repositoryCell = cachedCell as? RepositoryCell {
+            let item = viewModel.repositories[indexPath.row]
+            repositoryCell.fullnameLabel.text = item.fullName
+            repositoryCell.descriptionLabel.text = item.itemDescription
+
+            return CGSize(width: cellWidth, height: repositoryCell.heightFor(cellWidth))
+        }
+
+        return CGSize(width: cellWidth, height: 0)
     }
 }
 
